@@ -1,0 +1,29 @@
+<div class="post_container">
+  <div class="content">
+    <div class="container" *ngIf="authService.isAuthenticated()">
+      <div class="row">
+        <div class="col-md-1"></div>
+
+        <div class="col-md-8">
+          <h1 class="blog-title">{{ post.title }}</h1>
+
+          <span>
+            <p>by {{ post.username }}</p>
+          </span>
+
+          <hr />
+
+          <p [innerHTML]="post.content"></p>
+
+          <hr />
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!authService.isAuthenticated()">
+      <p class="text-center">
+        Please <a href="/login" class="login">login</a> to see the post.
+      </p>
+    </div>
+  </div>
+</div>

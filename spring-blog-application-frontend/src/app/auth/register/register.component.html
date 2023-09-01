@@ -1,0 +1,157 @@
+<div class="register_container">
+  <div class="container justify-content-center">
+    <div>
+      <h3 style="color: royalblue">Register Here</h3>
+    </div>
+
+    <hr />
+
+    <form
+      class="form-signin"
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="form-group">
+        <!-- <label for="inputUsername" class="sr-only">Username</label> -->
+
+        <input
+          type="text"
+          id="inputUsername"
+          [formControlName]="'username'"
+          class="form-control"
+          placeholder="Username"
+          required=""
+          autofocus=""
+        />
+
+        <div
+          *ngIf="
+            registerForm.get('username')?.invalid &&
+            (registerForm.get('username')?.dirty ||
+              registerForm.get('username')?.touched)
+          "
+        >
+          <div
+            *ngIf="registerForm.get('username')?.errors?.['required']"
+            class="error-message"
+          >
+            Username is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mt-3">
+        <!-- <label for="inputEmail" class="sr-only">Email</label> -->
+
+        <input
+          type="text"
+          id="inputEmail"
+          [formControlName]="'email'"
+          class="form-control"
+          placeholder="Email"
+          required=""
+          autofocus=""
+        />
+
+        <div
+          *ngIf="
+            registerForm.get('email')?.invalid &&
+            (registerForm.get('email')?.dirty ||
+              registerForm.get('email')?.touched)
+          "
+        >
+          <div
+            *ngIf="registerForm.get('email')?.errors?.['required']"
+            class="error-message"
+          >
+            Email is required.
+          </div>
+
+          <div
+            *ngIf="registerForm.get('email')?.errors?.['email']"
+            class="error-message"
+          >
+            Invalid email format.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mt-3">
+        <!-- <label for="inputPassword" class="sr-only">Password</label> -->
+
+        <input
+          type="password"
+          id="inputPassword"
+          [formControlName]="'password'"
+          class="form-control"
+          placeholder="Password"
+        />
+
+        <div
+          *ngIf="
+            registerForm.get('password')?.invalid &&
+            (registerForm.get('password')?.dirty ||
+              registerForm.get('password')?.touched)
+          "
+        >
+          <div
+            *ngIf="registerForm.get('password')?.errors?.['required']"
+            class="error-message"
+          >
+            Password is required.
+          </div>
+
+          <div
+            *ngIf="registerForm.get('password')?.errors?.['minlength']"
+            class="error-message"
+          >
+            Password should be at least 6 characters long.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mt-3">
+        <!-- <label for="inputConfirmPassword" class="sr-only">Password</label> -->
+
+        <input
+          type="password"
+          id="inputConfirmPassword"
+          [formControlName]="'confirmPassword'"
+          class="form-control"
+          placeholder="Confirm Password"
+          required=""
+        />
+
+        <div
+          *ngIf="
+            registerForm.get('confirmPassword')?.invalid &&
+            (registerForm.get('confirmPassword')?.dirty ||
+              registerForm.get('confirmPassword')?.touched)
+          "
+        >
+          <div
+            *ngIf="registerForm.get('confirmPassword')?.errors?.['required']"
+            class="error-message"
+          >
+            Confirm Password is required.
+          </div>
+
+          <div
+            *ngIf="registerForm.hasError('passwordMismatch')"
+            class="error-message"
+          >
+            Password do not match.
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="btn btn-lg btn-primary btn-block mt-3"
+        type="submit"
+        [disabled]="registerForm.invalid"
+      >
+        Sign up
+      </button>
+    </form>
+  </div>
+</div>
